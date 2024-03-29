@@ -1,12 +1,14 @@
-import cors from "cors";
-import axios from "axios";
-import express from "express";
-import bodyParser from "body-parser"
-
+const express = require('express');
 const app = express();
-app.use(cors());
+const multer = require('multer');
+const axios = require('axios');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const port = 3000;
+const upload = multer({ dest: 'uploads/' });
 app.use(cors());
+
+
 app.use(bodyParser.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("images"));
@@ -30,12 +32,10 @@ app.get('/t2i', (req, res) => {
 //     console.log(text1,audiofile1);
 // });
 
-app.post('/submit', (req, res) => {
-    const text = req.body.text;
-    const audioFile = req.body.files.audiofile;
-    console.log('Text: ${text}');
-    console.log('Audio file path: ${audioFile}');
-    res.redirect('/t2v');
+app.post('/submit',upload.single("audiofile"), (req, res) => {
+    console.log(req.file);
+    // const text = req.body.text;
+    console.log(`Text: ${text}`);
   });
 
 app.get('/t2isubmit', (req, res) => {
@@ -46,5 +46,5 @@ app.get('/t2isubmit', (req, res) => {
   
 
 app.listen(port,()=>{
-    console.log('server running on port ${port}.');
+    console.log(`server running on port ${port}.`);
 });
