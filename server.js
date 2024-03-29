@@ -35,7 +35,7 @@ app.post('/submit', (req, res) => {
     const audioFile = req.body.files.audiofile;
     console.log('Text: ${text}');
     console.log('Audio file path: ${audioFile}');
-    res.redirect('/');
+    res.redirect('/t2v');
   });
 
 app.get('/t2isubmit', (req, res) => {
