@@ -1,0 +1,80 @@
+body{
+    background-image: url("Desktop\ -\ 1\ \(3\).png");
+    background-repeat: no-repeat;
+}
+#hding{
+    position: fixed;
+    top: 0;
+    left: 47%;
+    color: #fff;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
+}
+.rowsdiv{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content:space-around;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+#coldiv{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content:center;
+    
+}
+#parent-con{
+    padding-top: 200px;
+}
+#set2{
+    padding-top: 100px;
+}
+#img2{
+    filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
+
+}
+.button1{
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    background: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 50px;
+
+}
+
+.button1:hover{
+    background: #ffffff;
+    color: #000;
+    font-weight: 500;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button2{
+    width: 200px;
+    height: 50px;
+    color: #000000;
+    background: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 50px;
+
+}
+
+.button2:hover{
+    background: #000000;
+    color: #ffffff;
+    font-weight: 500;
+    box-shadow: 10px 10px 4px rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,33 @@
+<!-- t2i.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini</title>
+    <link rel="stylesheet" href="t2i.css">
+    <script src="login.js"></script>
+</head>
+<body>
+  <div id="t2vhd"><h1>Image Generation</h1></div>
+  <div id="parent-cont">
+        <div class="container">
+          <input type="checkbox" id="check">
+          <div class="login form">
+            <header style="color: #5B84C4;">Type here</header>
+            <form action="/t2isubmit">
+              <p class="hdfields">TextFile</p><input type="text" class="filefield" placeholder="Enter text here..." name="Textt2i">
+              <a href="userpage.html"><input type="submit" class="button" value="Generate" onclick="return userlogin()"></a>
+            </form>
+          </div>
+        </div>
+        <div class="loginimage">
+          <img src="ai-file (1).png" alt="loginpicture">
+          <div class="overlay">
+            <div class="text">It is Text to Image generation model. You can describe the image you want it will generate ai image according to it.</div>
+          </div>
+       </div>
+    </div>
+  </body>
+</html>
