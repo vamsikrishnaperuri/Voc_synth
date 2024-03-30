@@ -1,11 +1,22 @@
-import socket
+from flask import Flask, request
+from werkzeug.utils import secure_filename
+import os
 
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.bind((socket.gethostname(),1234))
+app = Flask(__name__)
 
-s.listen(5)
+@app.route('/upload-audio', methods=['POST'])
+def upload_audio():
+    print(request.form["audiofile"])
+    if 'audiofile' not in request.form:
+        print("Not file selected")
+        return 'No file part'
 
-while True:
-	clientsocket,address=s.accept()
-	print(f"Connection from {address} has been Established!")
-	clientsocket.send(bytes("Welcome to Server","utf-8"))
+    file = request.form['audiofile']
+    # print(file)
+    # if file:
+    #     filename = secure_filename(file.filename)
+    #     file.save(os.path.join('flaskupload', filename))
+    #     return 'File uploaded successfully'
+
+if __name__ == '__main__':
+    app.run(debug=True,)

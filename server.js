@@ -31,9 +31,9 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
     console.log(req.file);
 
     const formData = new FormData();
-    console.log(req.body.audiofile);
-    formData.append('audiofile', fs.createReadStream(req.body.audiofile));
-
+    console.log(req.file.path);
+    formData.append('audiofile', fs.createReadStream(req.file.path));
+    console.log(formData)
     try {
         const response = await axios.post('http://127.0.0.1:5000/upload-audio', formData, {
             headers: {
@@ -44,7 +44,7 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
         res.send('File uploaded successfully.');
         console.log("upload success to flask");
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
         res.status(500).send('Failed to upload file.');
     }
 });
