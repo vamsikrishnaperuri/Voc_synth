@@ -31,8 +31,8 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
     console.log(req.file);
 
     const formData = new FormData();
-    console.log(req.file.path);
-    formData.append('audiofile', fs.createReadStream(req.file.path));
+    console.log(req.body.audiofile);
+    formData.append('audiofile', fs.createReadStream(req.body.audiofile));
 
     try {
         const response = await axios.post('http://127.0.0.1:5000/upload-audio', formData, {
