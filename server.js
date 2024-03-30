@@ -27,9 +27,26 @@ app.get('/t2v', (req, res) => {
 app.get('/t2i', (req, res) => {
     res.render('t2i.ejs');
 });
-app.post('/submit', upload.single('audiofile'), (req, res) => {
-  console.log(req.file);
-  res.send('File uploaded successfully.');
+app.post('/submit', upload.single('audiofile'), async(req, res) => {
+    console.log(req.file);
+
+    const formData = new FormData();
+    console.log(req.file.path);
+    formData.append('audiofile', fs.createReadStream(req.file.path));
+
+    try {
+        const response = await axios.post('http://127.0.0.1:5000/upload-audio', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        res.send('File uploaded successfully.');
+        console.log("upload success to flask");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Failed to upload file.');
+    }
 });
 
 
