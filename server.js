@@ -63,7 +63,7 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
             },
         });
 
-        res.send('File uploaded successfully.');
+        res.send('File uploaded successfully.'+response.data);
         console.log("upload success to flask");
     } catch (error) {
         console.error(error.message);
