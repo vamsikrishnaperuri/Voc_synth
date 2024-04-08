@@ -30,10 +30,31 @@ app.get('/t2i', (req, res) => {
 app.post('/submit', upload.single('audiofile'), async(req, res) => {
     console.log(req.file);
 
+    const fileStream = fs.createReadStream(req.file.path);
+    const arrayBuffer = await new Promise((resolve, reject) => {
+        const chunks = [];
+        fileStream.on('data', (chunk) => {
+            chunks.push(chunk);
+        });
+        fileStream.on('end', () => {
+            resolve(Buffer.concat(chunks));
+        });
+        fileStream.on('error', reject);
+    });
+    const blob = new Blob([new Uint8Array(arrayBuffer)], { type: req.file.type });
+    console.log(blob);
+
+    //Text data
+    const textData = req.body.text;
+
+    // Create a new FormData object
     const formData = new FormData();
-    console.log(req.file.path);
-    // formData.append('audiofile', fs.createReadStream(req.file.path));
-    formData.append('audiofile', req.file);
+
+    // Append the Blob to the formData
+    formData.append('audiofile', blob);
+    formData.append('text', textData);
+
+
     console.log(formData)
     try {
         const response = await axios.post('http://127.0.0.1:5000/upload-audio', formData, {
