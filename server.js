@@ -17,12 +17,14 @@ app.set("view engine", "ejs");
 app.use(express.static("images"));
 app.use(express.static("styles"));
 
+
 app.get('/', (req, res) => {
     res.render('home.ejs');
 });
   
 app.get('/t2v', (req, res) => {
-    res.render('t2v.ejs');
+    // res.render('t2v.ejs');               
+    res.render('t2v.ejs', { fileReceivedMessage: '' });
 });
   
 app.get('/t2i', (req, res) => {
@@ -79,6 +81,8 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
         writeStream.on('finish', () => {
             console.log('Audio file received successfully.');
             // res.send('Audio received!'); // Send confirmation response to the Flask server
+            const fileReceivedMessage = 'Download your audio file now';
+            res.render('t2v.ejs', { fileReceivedMessage });
         });
 
         writeStream.on('error', (error) => {
