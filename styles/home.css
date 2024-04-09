@@ -29,7 +29,23 @@ body{
     padding-top: 200px;
 }
 #set2{
-    padding-top: 100px;
+    /* padding-top: 100px; */
+    color: #fff;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 40px;
+    box-shadow: 10px 10px 6px 9px #bbb5b5;
+    font-family: cursive;
+}
+#set2:hover{
+    color: #000000;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 10px 10px 6px 9px #0d6cb9;
+}
+#ref{
+    display: flex;
+    justify-content: left;
 }
 #img2{
     filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
@@ -47,7 +63,7 @@ body{
     cursor: pointer;
     transition: 0.4s;
     border-radius: 50px;
-
+    font-family: cursive;
 }
 
 .button1:hover{
