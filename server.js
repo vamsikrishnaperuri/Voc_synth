@@ -97,9 +97,11 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
         //     console.log('File downloaded successfully');
         //     }
         // });
+        // Set the static folder to serve your HTML file
         
-        res.send('File uploaded successfully.'+response.data);
-        console.log("try executed");
+        
+        // res.send('File uploaded successfully.'+response.data);
+        // console.log("try executed");
         
     } catch (error) {
         console.error(error.message);
@@ -108,19 +110,21 @@ app.post('/submit', upload.single('audiofile'), async(req, res) => {
 
 
 });
+app.use(express.static(path.join(__dirname, 'public')));  // Assuming 'public' holds 'home.html'
 
-// const downloadFilePath = './received_audio.wav';
+        // Route to serve the audio file (replace with your actual path)
+app.get('/received_audio.wav', (req, res) => {
+    const filePath = path.join(__dirname, 'received_audio.wav');  // Assuming 'audio.wav' is in the root directory
 
-// app.get('/download', (req, res) => {
-//   res.sendFile(downloadFilePath, (err) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).send('Error downloading file');
-//     } else {
-//       console.log('File downloaded successfully');
-//     }
-//   });
-// });
+        // Set appropriate content type header for WAV format
+    res.setHeader('Content-Type', 'audio/wav');
+
+        // Set content disposition header to trigger download
+    res.setHeader('Content-Disposition', 'attachment; filename="received_audio.wav"');
+
+        // Send the audio file
+    res.sendFile(filePath);
+});
 
 app.get('/t2isubmit', (req, res) => {
     res.render('t2isubmit',{
